@@ -5,15 +5,13 @@ LABEL version="1.0"
 LABEL author="Nathanael"
 
 RUN apt-get update && apt-get install -y \
-	libreadline-dev \
-	lldb \
 	valgrind
 
 RUN mkdir /usr/code
 
-COPY sources /usr/code/sources
-COPY headers /usr/code/headers
-COPY libraries /usr/code/libraries
-COPY Valgrind.mk /usr/code/Makefile
+COPY ex00/sources /usr/code/sources
+COPY ex00/headers /usr/code/headers
+COPY ex00/libraries /usr/code/libraries
+COPY ex00/Valgrind.mk /usr/code/Makefile
 
-WORKDIR usr/code
+WORKDIR /usr/code
