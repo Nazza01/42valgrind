@@ -1,17 +1,18 @@
 # syntax = docker/dockerfile:1.2
 
 FROM gcc:latest
-LABEL version="1.0"
+LABEL version="2.0"
 LABEL author="Nathanael"
 
 RUN apt-get update && apt-get install -y \
 	valgrind
 
-RUN mkdir /usr/code
+WORKDIR /code
 
-COPY ex00/sources /usr/code/sources
-COPY ex00/headers /usr/code/headers
-COPY ex00/libraries /usr/code/libraries
-COPY ex00/Valgrind.mk /usr/code/Makefile
+RUN mkdir /code
 
-WORKDIR /usr/code
+COPY sources /code/sources
+COPY headers /code/headers
+COPY libraries /code/libraries
+COPY Makefile /code/Makefile
+
