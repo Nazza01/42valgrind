@@ -6,7 +6,7 @@
 #    By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 20:23:35 by Nathanael         #+#    #+#              #
-#    Updated: 2022/07/31 13:38:35 by Nathanael        ###   ########.fr        #
+#    Updated: 2022/07/31 13:52:30 by Nathanael        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,7 @@ m: all
 
 v:
 	$(ECHO) Removing old $(VALGRND_NAME) docker containers
-	docker stop $(VALGRND_NAME) > $(VALGRND_NAME)_docker.log; docker rm $(VALGRND_NAME) >> $(VALGRND_NAME)_docker.log
+	docker stop $(VALGRND_NAME) > $(VALGRND_NAME)_docker.log || true && docker rm $(VALGRND_NAME) >> $(VALGRND_NAME)_docker.log || true
 	$(ECHO) Creating valgrind docker named: $(VALGRND_NAME)
 	docker run --name $(VALGRND_NAME) -dit livingsavage/42valgrind:v4 >> $(VALGRND_NAME)_docker.log
 	$(ECHO) Copying Makefile $(HDR_DIR) $(SRC_DIR) to $(VALGRND_NAME)
