@@ -6,10 +6,12 @@ A gcc docker container which includes valgrind
 
 Refer to the included makefile in this directory which copies over your code into the docker container
 
-## Usage & Steps
+## Easy Usage
+1. Refer to the makefile inside this repository for setup within one of your makefiles:
+
 1. Download the files
 
-`git clone https://github.com/Nazza01/ftval`
+`git clone https://github.com/Nazza01/42valgrind`
 
 2. Build the docker image
 
