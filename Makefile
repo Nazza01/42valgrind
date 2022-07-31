@@ -6,7 +6,7 @@
 #    By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 20:23:35 by Nathanael         #+#    #+#              #
-#    Updated: 2022/07/31 13:52:30 by Nathanael        ###   ########.fr        #
+#    Updated: 2022/07/31 14:51:19 by Nathanael        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,9 +123,10 @@ m: all
 	grep -E '(ROOT LEAK): <' leak_out.txt || true
 	rm leak_out.txt
 
+
 v:
 	$(ECHO) Removing old $(VALGRND_NAME) docker containers
-	docker stop $(VALGRND_NAME) > $(VALGRND_NAME)_docker.log || true && docker rm $(VALGRND_NAME) >> $(VALGRND_NAME)_docker.log || true
+	docker stop $(VALGRND_NAME) > $(VALGRND_NAME)_docker.log 2>&1 || true && docker rm $(VALGRND_NAME) >> $(VALGRND_NAME)_docker.log 2>&1 || true
 	$(ECHO) Creating valgrind docker named: $(VALGRND_NAME)
 	docker run --name $(VALGRND_NAME) -dit livingsavage/42valgrind:v4 >> $(VALGRND_NAME)_docker.log
 	$(ECHO) Copying Makefile $(HDR_DIR) $(SRC_DIR) to $(VALGRND_NAME)
@@ -139,6 +140,7 @@ v:
 	$(ECHO) Copying over $(VALGRND_NAME)_leaks.log file
 	docker cp $(VALGRND_NAME):/code/$(VALGRND_NAME)_leaks.log .
 	$(ECHO) Done!
+	echo "The container $(VALGRND_NAME) is still running, if you want to go into the container type: docker attach $(VALGRND_NAME)"
 	echo "Typing [make vl] to view valgrind logs, or [make pl] to view program logs, will view the respective logs using less"
 
 h:
