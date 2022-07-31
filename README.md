@@ -19,11 +19,11 @@ Note: If you are not using the included makefile, you will need to set a variabl
 ECHO			= echo
 Variable list:
 ```
-VALGRND_NAME	= <containername>		//	The docker container name
-LOG				= <logname>				//	The location of the logs (uses find utility or you can explicity name them)
-NAME			= <program_name>		//	The program name
-HDR_DIR			= <header/includes_dir>	//	The directory where your headers files are located (.h/.hpp)
-SRC_DIR			= <sources>				//	The directory where your source files are located (.c/.cpp)
+VALGRND_NAME = <containername> //	The docker container name
+LOG = <logname> //	The location of the logs (uses find utility or you can explicity name them)
+NAME = <program_name> //	The program name
+HDR_DIR = <header/includes_dir>	//	The directory where your headers files are located (.h/.hpp)
+SRC_DIR = <sources> //	The directory where your source files are located (.c/.cpp)
 ```
 
 ## Docker Container development (build & develop)
