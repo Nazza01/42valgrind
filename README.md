@@ -2,10 +2,9 @@
 
 WIP
 
-A gcc docker container which includes libreadline-dev, lldb and valgrind
+A gcc docker container which includes valgrind
 
-This docker container copies over the directories contained inside the current directory
-(git clone into a project folder which has a sources, headers, libraries and Makefile)
+Refer to the included makefile in this directory which copies over your code into the docker container
 
 ## Usage & Steps
 1. Download the files
@@ -32,12 +31,5 @@ The following command line utilites are installed:
 Usage
 
 `valgrind ./programname`
-
-## Readline
-### Usage: Usable inside your C file as well as header file so minishell (& other projects) can work
-libreadline-dev - readline function for C library to work inside the linux docker container
-
-## lldb
-### Usage: allows for easier debugging for your code
 
 This project is a work in progress and may change over time.
