@@ -10,7 +10,7 @@ This docker container is based off of gcc:latest on docker hub, while also insta
 1. Refer to the included makefile in this directory which copies over your code into the docker container and does all the work for you (mostly!)
 
 2. Add the rule `v` inside your makefile as per the Makefile included inside this repository
-	You may also need to add a few variables as the valgrind rule will need it. (see the Variable explanation for the rules that are needed)
+	You may also need to add a few variables as the valgrind rule will need it. (see the Variable explanation for the variables that are needed)
 
 Prequisites: Make sure you have docker installed!
 
