@@ -16,7 +16,8 @@ Prequisites: Make sure you have docker installed!
 
 ## Variable Explanation
 Note: If you are not using the included makefile, you will need to set a variable for echo as my usual makefiles include a progress bar which is used alongside echo. Feel free to set the $(ECHO) variable to echo like so:
-ECHO			= echo
+`ECHO			= echo`
+
 Variable list:
 ```
 VALGRND_NAME = <containername> //	The docker container name
