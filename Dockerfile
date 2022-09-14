@@ -5,7 +5,11 @@ LABEL version="4.0"
 LABEL author="Nathanael"
 
 RUN apt-get update && apt-get install -y \
-	valgrind
+	valgrind \
+	xorg \
+	libxext-dev \
+	zlib1g-dev \
+	libbsd-dev
 
 RUN mkdir /code
 
