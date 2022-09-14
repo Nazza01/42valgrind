@@ -15,7 +15,7 @@ UNAME_S		=	$(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 CFLAGS		+=	-I $(LIB_DIR)/mlx_linux
 LDFLAGS		=	-L $(LIB_DIR)/mlx_linux -L /usr/lib
-LLFLAGS		=	-lmlx -lXext -lX11
+LLFLAGS		=	-lXext -lX11 -lmlx
 MLX_SUBMAKE	=	$(LIB_DIR)/mlx_linux
 
 endif
