@@ -6,19 +6,19 @@
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:20:14 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/09/19 15:55:33 by Nathanael        ###   ########.fr       */
+/*   Updated: 2022/09/21 14:44:10 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
-int	main(int argc, char const *argv[])
+int	main(void)
 {
-	printf("Assigning size for an integer\n");
-	int *mal = malloc(sizeof(int));
-	
-	printf("Exiting Program\n");
+	ft_putstr_fd("Assigning size for an integer\n", 1);
+	ft_putstr_fd("Exiting Program\n", 1);
 
 	return (0);
 }

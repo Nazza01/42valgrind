@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 22:20:14 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/09/19 15:55:33 by Nathanael        ###   ########.fr       */
+/*   Created: 2021/09/08 09:37:57 by nervin            #+#    #+#             */
+/*   Updated: 2022/08/09 10:40:01 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int	main(int argc, char const *argv[])
+/*
+ft_tolower
+	If c is an lowercase letter, ft_tolower returns the lowecase equivelent, 
+	otherwise it returns c.
+*/
+int	ft_tolower(int c)
 {
-	printf("Assigning size for an integer\n");
-	int *mal = malloc(sizeof(int));
-	
-	printf("Exiting Program\n");
-
-	return (0);
+	if (c >= 65 && c <= 90)
+		return (c + 32);
+	return (c);
 }

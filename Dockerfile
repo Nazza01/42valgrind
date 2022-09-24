@@ -11,9 +11,10 @@ RUN apt-get update && apt-get install -y \
 	libxext-dev \
 	libbsd-dev
 
-RUN mkdir /code
-
 WORKDIR /code
 
 ARG TERM=xterm
 ENV TERM=$TERM
+
+ARG DISPLAY=host.docker.internal:0
+ENV DISPLAY=$DISPLAY

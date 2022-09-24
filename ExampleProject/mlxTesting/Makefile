@@ -1,54 +1,53 @@
-NAME	=	program
+NAME		=	mlxTesting
 
-SRC_DIR	=	src
-OBJ_DIR	=	obj
-LIB_DIR	=	lib
+SRC_DIR		=	sources
+OBJ_DIR		=	objects
+LIB_DIR		=	libraries
 
-SRC		=	$(SRC_DIR)/main.c
-OBJ		=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+CFLAGS		=	-Wall -Wextra -Werror -std=c99 -g
 
-CC			=	gcc
-CFLAGS		=	-std=c99 -g
+# libft
+
+# mlx
+
+
+SRC			=	$(SRC_DIR)/main.c
+OBJ			=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
 
 UNAME_S		=	$(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
-CFLAGS		+=	-I $(LIB_DIR)/mlx_linux
-LDFLAGS		=	-L $(LIB_DIR)/mlx_linux -L /usr/lib
-LLFLAGS		=	-lXext -lX11 -lmlx
+
 MLX_SUBMAKE	=	$(LIB_DIR)/mlx_linux
+MLX_LIB		:=	-lXext -lX11 $(shell find $(MLX_SUBMAKE) -name 'lib*.a' -not -name 'libmlx_Linux.a')
+ALL_LIB		:=	$(shell find lib -name 'lib*.a' -not -path '*mlx*')
 endif
 ifeq ($(UNAME_S),Darwin)
-CFLAGS		+=	-I $(LIB_DIR)/mlx_opengl
-LDFLAGS		=	-L $(LIB_DIR)/mlx_opengl
-LLFLAGS		=	-l mlx -framework OpenGL -framework AppKit
 MLX_SUBMAKE	=	$(LIB_DIR)/mlx_opengl
+MLX_LIB		:=	-framework OpenGL -framework AppKit $(shell find $(MLX_SUBMAKE) -name 'lib*.a')
+ALL_LIB		:=	$(shell find lib -name 'lib*.a' -not -path '*mlx*')
 endif
+
+CFLAGS		+=	-I lib/libft/includes
+CFLAGS		+=	-I $(MLX_SUBMAKE)
 
 ECHO		=	echo
 VAL_NAME	=	testing
 MKDIR		=	mkdir -p
 
-all: mlx $(NAME)
+all: makelib $(NAME)
 
-ifeq ($(UNAME_S),Linux)
-mlx:
-	$(MAKE) -C $(MLX_SUBMAKE) -f Makefile.mk
-	$(info $@ library linked and compiled)
-endif
-ifeq ($(UNAME_S),Darwin)
-mlx:
+makelib:
+	$(MAKE) -C lib/libft
 	$(MAKE) -C $(MLX_SUBMAKE)
-	$(info $@ library linked and compiled)
-endif
 
 $(OBJ): $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	$(MKDIR) $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
-	$(info $< compiled to $@)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDFLAGS) $(LLFLAGS)
+	$(CC) -I lib/lbift/includes $(ALL_LIB) -o $@ $(OBJ) $(MLX_LIB)
 
 clean:
 	$(RM) -r $(OBJ_DIR) $(NAME)
@@ -58,29 +57,19 @@ re: clean all
 attach:
 	docker attach $(NAME)
 
+
 dockerchk:
 	docker stop $(NAME) || true && docker rm $(NAME) || true
-	
-container: dockerchk
-	$(info Pulling docker container)
-	docker run --name $(NAME) --entrypoint=/bin/bash -dit livingsavage/42valgrind:v4
-	$(info Copying files to container)
+	docker run --name $(NAME) --entrypoint=/bin/bash -dit livingsavage/42valgrind:v5
+	open -a "XQuartz.app"
+	xhost + 127.0.0.1
 	docker cp $(SRC_DIR) $(NAME):/code/$(SRC_DIR)
 	docker cp $(LIB_DIR) $(NAME):/code/$(LIB_DIR)
 	docker cp Makefile $(NAME):/code/Makefile
-	$(info Executing make inside container)
 	docker exec $(NAME) make
-	$(info Ready to run, type ./$(NAME) to run)
-	docker attach $(NAME)
+
+run: dockerchk
+	docker exec $(NAME) ./$(NAME)
 
 valgrind: dockerchk
-	$(info Pulling docker container)
-	docker run --name $(NAME) --entrypoint=/bin/bash -dit livingsavage/42valgrind:v4
-	$(info Copying files to container)
-	docker cp $(SRC_DIR) $(NAME):/code/$(SRC_DIR)
-	docker cp $(LIB_DIR) $(NAME):/code/$(LIB_DIR)
-	docker cp Makefile $(NAME):/code/Makefile
-	$(info Executing make inside container)
-	docker exec $(NAME) make
-	$(info Executing valgrind inside container)
 	docker exec $(NAME) valgrind -- ./$(NAME)

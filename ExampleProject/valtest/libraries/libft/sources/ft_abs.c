@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 22:20:14 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/09/19 15:55:33 by Nathanael        ###   ########.fr       */
+/*   Created: 2022/04/30 23:04:13 by Nathanael         #+#    #+#             */
+/*   Updated: 2022/08/09 10:40:01 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int	main(int argc, char const *argv[])
+int	ft_abs(int tofind)
 {
-	printf("Assigning size for an integer\n");
-	int *mal = malloc(sizeof(int));
-	
-	printf("Exiting Program\n");
-
-	return (0);
+	if (tofind < 0)
+		return (-tofind);
+	return (tofind);
 }

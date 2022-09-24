@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 22:20:14 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/09/19 15:55:33 by Nathanael        ###   ########.fr       */
+/*   Created: 2021/09/08 09:34:56 by nervin            #+#    #+#             */
+/*   Updated: 2022/08/09 10:40:01 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int	main(int argc, char const *argv[])
+/*
+NAME
+	ft_lstadd_front
+PARAMETERS
+	1.	The address of a pointer to the first link of a list.
+	2.	The address of a pointer to the element to be added to the list.
+DESCRIPTION
+	Adds the element 'new' at the beginning of the list.
+RETURN VALUES
+	None.
+*/
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	printf("Assigning size for an integer\n");
-	int *mal = malloc(sizeof(int));
-	
-	printf("Exiting Program\n");
-
-	return (0);
+	if (!new || !lst)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

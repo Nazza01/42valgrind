@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Nathanael <nervin@student.42adel.org.au    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 22:20:14 by Nathanael         #+#    #+#             */
-/*   Updated: 2022/09/19 15:55:33 by Nathanael        ###   ########.fr       */
+/*   Created: 2022/09/21 16:07:36 by Nathanael         #+#    #+#             */
+/*   Updated: 2022/09/21 16:12:57 by Nathanael        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "test.h"
 
-int	main(int argc, char const *argv[])
+void	output(char *str)
 {
-	printf("Assigning size for an integer\n");
-	int *mal = malloc(sizeof(int));
-	
-	printf("Exiting Program\n");
-
-	return (0);
+	printf("%s\n", str);
 }

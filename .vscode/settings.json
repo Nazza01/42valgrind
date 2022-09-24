@@ -8,6 +8,7 @@
 	],
 	"C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
 	"files.associations": {
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"stdlib.h": "c"
 	}
 }
